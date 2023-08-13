@@ -1,0 +1,11 @@
+<div class='container main-content'>
+
+    <div class="card" *ngIf="!(selectedWineId$ | async)">
+        <app-wine-list></app-wine-list>
+    </div>
+
+    <div class="card" *ngIf="selectedWineId$ | async">
+        <app-wine-details></app-wine-details>
+    </div>
+    
+</div>

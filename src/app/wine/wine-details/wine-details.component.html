@@ -1,0 +1,35 @@
+<div class='container main-content'>
+
+    <div class="card">
+        <div class="card-header">
+            {{pageTitle}}
+        </div>
+        <form>
+            <div class="card-body" *ngIf="selectedWine$ | async as wine">
+                <div>Wine Name: {{ wine.wineName }}</div>
+                <div>Winery Name: {{ wine.wineryName }}</div>
+                <div>Vintage: {{ wine.vintage }}</div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <a class="href" style="cursor: pointer" (click)="goToWineReviews()">
+                            See reviews for this wine
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <span>
+                <a class=" btn btn-light" style="width:80px;margin-right:10px" (click)="cancel()">
+                    Cancel
+                </a>
+            </span>
+            <span *ngIf="selectedWine$ | async as wine">
+                <a class="btn btn-light" style="width:80px;margin-right:10px" (click)="editWine(wine)">
+                    Edit
+                </a>
+            </span>
+        </form>
+        <div class="card-footer">
+            <div class="row"></div>
+        </div>
+    </div>
+</div>

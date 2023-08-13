@@ -1,0 +1,71 @@
+<div class='container main-content'>
+
+    <div class="card">
+        <div class="card-header">
+            {{pageTitle}}
+        </div>
+
+        <div class="card-body">
+            <div *ngIf="!(newUserLogin$ | async)">
+                <form class="needs-validation" novalidate (ngSubmit)="login(loginForm)" #loginForm="ngForm"
+                    autocomplete="off">
+                    <fieldset>
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label" for="userNameId">User Name
+                            </label>
+                            <div class="col-md-8">
+                                <input class="form-control" id="userNameId" placeholder="User Name (required)"
+                                    [ngClass]="{'is-invalid': (userNameVar.touched || userNameVar.dirty) && !userNameVar.valid }"
+                                    required ngModel name="userName" #userNameVar="ngModel" />
+                                <div class="invalid-feedback"
+                                    *ngIf="(userNameVar.touched || userNameVar.dirty) && userNameVar.hasError('required')">
+                                    User name is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label" for="userPasswordId">Password</label>
+                            <div class="col-md-8">
+                                <input class="form-control"
+                                    [ngClass]="{'is-invalid': (userPasswordVar.touched || userPasswordVar.dirty) && !userPasswordVar.valid }"
+                                    id="passwordId" type="password" placeholder="Password (required)" required ngModel
+                                    name="userPassword" #userPasswordVar="ngModel" />
+                                <div class="invalid-feedback"
+                                    *ngIf="(userPasswordVar.touched || userPasswordVar.dirty) && userPasswordVar.hasError('required')">
+                                    Password is required.
+                                </div>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                    <div class="form-group row">
+                        <div class="col-md-12" style="margin-top: 10px;">
+                            <span class="col-md-1">
+                                <button class="btn btn-primary" type="submit" style="width:75px;margin-right:10px" [disabled]="!loginForm.valid">
+                                    Log In
+                                </button>
+                            </span>
+                            <span class="col-md-2">
+                                <a class="btn btn-light" style="width:75px;margin-right:10px" (click)="cancel()">
+                                    Cancel
+                                </a>
+                            </span>
+                            <span *ngIf="currentUser$ | async">
+                                LOGIN FAILURE
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <div class="col-md-8">Don't have an account yet?
+                <a class="href" style="cursor: pointer" (click)="showCreateAccount()">
+                    Create New Account
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

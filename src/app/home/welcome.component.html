@@ -1,0 +1,12 @@
+<div class="card">
+    <div class="card-header">
+        {{pageTitle}} 
+        <span *ngIf="!(userLoggedIn$ | async)">Please log in</span>
+        <span *ngIf="currentUser$ | async as currentUser">{{ currentUser.userName }}</span>
+    </div>
+    <div class="card-body" *ngIf="userLoggedIn$ | async">
+        <div class="container">
+            WINE FACT ROULETTE PLACEHOLDER
+        </div>
+    </div>
+</div>

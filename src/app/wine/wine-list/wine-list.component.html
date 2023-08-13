@@ -1,0 +1,24 @@
+<div class='container main-content'>
+
+    <div class="card">
+        <div class="card-header">
+            {{pageTitle}}
+        </div>
+        <div class="card-body" *ngIf="wineList$ | async as wineList">
+            <div class="list-group">
+                <div *ngFor="let wine of wineList">
+                    <button class="list-group-item list-group-item-action rounded-0" [ngClass]="{'active': wine?.wineId}"
+                        (click)="wineSelected(wine)">
+                        {{ wine.wineName }}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-light" (click)="addNewWine()">
+                Add New Wine
+            </button>
+        </div>
+    </div>
+
+</div>

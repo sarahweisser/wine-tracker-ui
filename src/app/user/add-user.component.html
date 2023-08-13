@@ -1,0 +1,66 @@
+<div class='container main-content'>
+
+    <div class="card">
+        <div class="card-header">
+            {{pageTitle}}
+        </div>
+
+        <div class="card-body">
+            <form class="needs-validation" novalidate (ngSubmit)="addUser(addUserForm)" #addUserForm="ngForm"
+                autocomplete="off">
+                <fieldset>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="userNameId">User Name</label>
+                        <div class="col-md-8">
+                            <input class="form-control" id="userNameId" placeholder="User Name (required)"
+                                [ngClass]="{'is-invalid': (userNameVar.touched || userNameVar.dirty) && !userNameVar.valid }"
+                                required ngModel name="userName" #userNameVar="ngModel" />
+                            <div class="invalid-feedback"
+                                *ngIf="(userNameVar.touched || userNameVar.dirty) && userNameVar.hasError('required')">
+                                User name is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="userPasswordId">Password</label>
+                        <div class="col-md-8">
+                            <input class="form-control"
+                                [ngClass]="{'is-invalid': (userPasswordVar.touched || userPasswordVar.dirty) && !userPasswordVar.valid }"
+                                id="userPasswordId" type="password" placeholder="Password (required)" required ngModel
+                                name="userPassword" #userPasswordVar="ngModel" />
+                            <div class="invalid-feedback"
+                                *ngIf="(userPasswordVar.touched || userPasswordVar.dirty) && userPasswordVar.hasError('required')">
+                                Password is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-2">
+                        <div class="col-md-8">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-control form-check-input" id="isAdmin" type="checkbox" ngModel
+                                        name="isAdmin" #isAdminVar="ngModel">Admin?
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    <div class="col-md-10" style="margin-top: 10px;">
+                        <span>
+                            <button class="btn btn-primary" type="submit" style="width:80px;margin-right:10px"
+                                [disabled]="!addUserForm.valid">
+                                Log In
+                            </button>
+                        </span>
+                        <span>
+                            <a class="btn btn-light" style="width:80px;margin-right:10px" (click)="cancel()">
+                                Cancel
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

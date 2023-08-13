@@ -1,0 +1,20 @@
+<div class="card">
+    <div class="card-header">
+        {{pageTitle}}
+    </div>
+    <div class="card-body">
+        <div>search by wineName</div>
+        <div>my reviews</div>
+        <div *ngIf="userReviewList$ | async as userReviewList">List of Reviews</div>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <button class="btn btn-primary col-2" type="button" (click)="addNewUserReview()" >
+                Add Review
+            </button>
+            <button class="btn btn-primary col-2" type="button">
+                Submit Wine
+            </button>
+        </div>
+    </div>
+</div>

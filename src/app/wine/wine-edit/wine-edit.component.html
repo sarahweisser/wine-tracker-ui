@@ -1,0 +1,71 @@
+<div class='container main-content'>
+
+    <div class="card">
+        <div class="card-header">
+            {{pageTitle}}
+        </div>
+        <div class="card-body">
+            <form class="needs-validation" novalidate (ngSubmit)="submitWine(wineForm)" #wineForm="ngForm"
+                autocomplete="off">
+                <fieldset>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="wineNameId">Wine Name
+                        </label>
+                        <div class="col-md-8">
+                            <input class="form-control" id="wineNameId" placeholder="Wine Name (required)"
+                                [ngClass]="{'is-invalid': (wineNameVar.touched || wineNameVar.dirty) && !wineNameVar.valid }"
+                                required ngModel name="wineName" #wineNameVar="ngModel"/>
+                            <div class="invalid-feedback"
+                                *ngIf="(wineNameVar.touched || wineNameVar.dirty) && wineNameVar.hasError('required')">
+                                Wine name is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="wineryNameId">Winery Name
+                        </label>
+                        <div class="col-md-8">
+                            <input class="form-control" id="wineryNameId" placeholder="Winery Name (required)"
+                                [ngClass]="{'is-invalid': (wineryNameVar.touched || wineryNameVar.dirty) && !wineryNameVar.valid }"
+                                required ngModel name="wineryName" #wineryNameVar="ngModel" />
+                            <div class="invalid-feedback"
+                                *ngIf="(wineryNameVar.touched || wineryNameVar.dirty) && wineryNameVar.hasError('required')">
+                                Winery name is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="vintageId">Vintage
+                        </label>
+                        <div class="col-md-8">
+                            <input class="form-control" id="vintageId" placeholder="Vintage (required)"
+                                [ngClass]="{'is-invalid': (vintageVar.touched || vintageVar.dirty) && !vintageVar.valid }"
+                                required ngModel name="vintage" #vintageVar="ngModel" />
+                            <div class="invalid-feedback"
+                                *ngIf="(vintageVar.touched || vintageVar.dirty) && vintageVar.hasError('required')">
+                                Vintage is required.
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    <div class="col-md-10" style="margin-top: 10px;">
+                        <span>
+                            <button class="btn btn-primary" 
+                                type="submit" 
+                                style="width:80px;margin-right:10px"
+                                [disabled]="!wineForm.valid">
+                                Submit
+                            </button>
+                        </span>
+                        <span>
+                            <a class="btn btn-light" style="width:80px;margin-right:10px" (click)="wineUnSelected()">
+                                Cancel
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
