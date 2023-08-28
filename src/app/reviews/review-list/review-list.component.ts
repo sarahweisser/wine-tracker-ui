@@ -27,6 +27,10 @@ export class UserReviewListComponent implements OnInit {
   ) { }
 
   addNewUserReview(): void {
-    this.router.navigate(['/reviews/0/edit']);
+    this.router.navigate(['/userReviewList/0/edit']);
+  }
+
+  reviewSelected(userReview: UserReview): void {
+    this.router.navigate(['/userReviewList', userReview.wineId]);
   }
 }

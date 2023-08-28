@@ -35,8 +35,9 @@ export class WineDetailsComponent implements OnInit {
         this.router.navigate(['/wines', wine.wineId, 'edit']);
     }
 
-    goToWineReviews(): void {
-        
+    goToWineReviews(wine: IWine): void {
+        // TODO init review list comp with only this wineId
+        this.router.navigateByUrl('/userReviewList');
     }
 
     cancel(): void {

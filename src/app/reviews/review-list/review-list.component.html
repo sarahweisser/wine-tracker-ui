@@ -5,7 +5,15 @@
     <div class="card-body">
         <div>search by wineName</div>
         <div>my reviews</div>
-        <div *ngIf="userReviewList$ | async as userReviewList">List of Reviews</div>
+        <div *ngIf="userReviewList$ | async as userReviewList">
+            List of Reviews | {{ userReviewList.length }}
+            <div *ngFor="let userReview of userReviewList">
+                <button class="list-group-item list-group-item-action rounded-0"
+                        (click)="reviewSelected(userReview)">
+                        {{ userReview.wineId }}
+                    </button>
+            </div>
+        </div>
     </div>
     <div class="card-footer">
         <div class="row">
