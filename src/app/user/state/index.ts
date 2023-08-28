@@ -27,3 +27,8 @@ export const getShowMenu = createSelector(
     getUserFeatureState,
     state => state.showMenu
 );
+
+export const getError = createSelector(
+    getUserFeatureState,
+    state => state.error
+);

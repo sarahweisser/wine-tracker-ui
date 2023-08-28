@@ -31,6 +31,7 @@ export class UserReviewListComponent implements OnInit {
   }
 
   reviewSelected(userReview: UserReview): void {
+    this.store.dispatch(ReviewPageActions.userReviewSelected({ userReview }));
     this.router.navigate(['/userReviewList', userReview.wineId]);
   }
 }

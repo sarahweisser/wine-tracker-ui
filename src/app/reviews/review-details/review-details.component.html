@@ -6,7 +6,9 @@
         </div>
 
         <div class="card-body">
-            {{ selectedWineDetails.wineName }}
+            <div *ngIf="(selectedReview$ | async) as review">
+                {{ review.reviewContent }}
+            </div>
         </div>
     </div>
 </div>

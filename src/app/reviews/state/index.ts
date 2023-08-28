@@ -12,3 +12,8 @@ export const getUserReviews = createSelector(
     getUserReviewFeatureState,
     state => state.userReviews
 );
+
+export const getSelectedUserReview = createSelector(
+    getUserReviewFeatureState,
+    state => state.selectedUserReview
+);
