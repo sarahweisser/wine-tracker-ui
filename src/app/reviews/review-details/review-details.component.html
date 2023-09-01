@@ -4,11 +4,16 @@
         <div class="card-header">
             {{pageTitle}}
         </div>
-
+        <div *ngIf="(selectedReview$ | async) as review">
         <div class="card-body">
-            <div *ngIf="(selectedReview$ | async) as review">
+            <div>
                 {{ review.reviewContent }}
             </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-primary" (click)="editReview(review)">
+                Edit this review
+            </button>
         </div>
     </div>
 </div>

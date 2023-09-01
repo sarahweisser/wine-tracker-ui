@@ -3,15 +3,29 @@
         {{pageTitle}}
     </div>
     <div class="card-body">
-        <div>search by wineName</div>
-        <div>my reviews</div>
         <div *ngIf="userReviewList$ | async as userReviewList">
-            List of Reviews | {{ userReviewList.length }}
+            <div class="row">
+                PLACEHOLDER for search and owner filter
+                <!-- TODO <div>filter my reviews checkbox</div> -->
+            <!-- TODO add review search -->
+            </div>
+            <!-- TODO <div>filter my reviews checkbox</div> -->
+            <!-- TODO add review search -->
             <div *ngFor="let userReview of userReviewList">
-                <button class="list-group-item list-group-item-action rounded-0"
-                        (click)="reviewSelected(userReview)">
-                        {{ userReview.wineId }}
-                    </button>
+                <div class="row">
+                    <div class="col">
+                        <!-- TODO figure out spacing -->
+                        <label>Review Name:&nbsp;</label>
+                        <button 
+                            (click)="reviewSelected(userReview)">
+                            VIEW
+                        </button>
+                        <button 
+                            (click)="editSelectedReview(userReview)">
+                            EDIT
+                        </button>
+                    </div>
+                </div>                
             </div>
         </div>
     </div>

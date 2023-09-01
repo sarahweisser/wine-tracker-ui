@@ -92,6 +92,7 @@ export const userReducer = createReducer<UserState>(
         return {
             ...state,
             currentUser: null,
+            userLoggedIn: false,
             error: action.error
         };
     

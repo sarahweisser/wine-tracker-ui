@@ -7,6 +7,7 @@ import { IWine } from "src/app/wine/wine";
 import { getSelectedWine } from "src/app/wine/state";
 import { UserReview } from "../review";
 import { getSelectedUserReview } from "../state";
+import { ReviewPageActions } from "../state/actions";
 
 @Component({
     selector: 'app-review-details',
@@ -28,5 +29,11 @@ export class UserReviewDetailsComponent implements OnInit {
     constructor(
         private store: Store<State>,
         private router: Router
-      ) { }
+    ) { }
+
+    editReview(userReview: UserReview): void {
+        // TODO add check for owner of review
+        this.store.dispatch(ReviewPageActions.userReviewSelected({ userReview }));
+        this.router.navigate(['/userReviewList', userReview.wineId, 'edit']);
+    }
 }
