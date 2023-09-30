@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class WelcomeComponent {
     pageTitle = 'Welcome';
     userLoggedIn$!: Observable<boolean>;
-    currentUser$!: Observable<User | null>;
+    currentUser$!: Observable<User | null | undefined>;
     
     ngOnInit(): void {
       console.log("INIT :: welcome comp");

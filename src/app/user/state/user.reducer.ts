@@ -1,26 +1,26 @@
 import { createReducer, on } from "@ngrx/store";
 import * as AppState from '../../state/app.state';
 import { UserApiActions, UserPageActions } from "./actions";
-import { User } from "../user";
+import { UserDto } from "../user";
 
 export interface State extends AppState.State {
     users: UserState;
 };
 
+
 export interface UserState {
-    currentUser: User | null;
+    userDto: UserDto | null;
     userLoggedIn: boolean;
     newUserLogin: boolean;
     showMenu: boolean;
-    error: string;
+    
 };
 
 const initialState: UserState = {
-    currentUser: null,
+    userDto: null,
     userLoggedIn: false,
     newUserLogin: false,
     showMenu: true,
-    error: '',
 };
 
 export const userReducer = createReducer<UserState>(
@@ -40,19 +40,22 @@ export const userReducer = createReducer<UserState>(
     on(UserApiActions.getUserByIdSuccess, (state, action): UserState => {
         return {
             ...state,
-            currentUser: action.user
+            userDto: action.userDto
         };
     }),
     on(UserApiActions.getUserByIdFailure, (state, action): UserState => {
         return {
             ...state,
-            error: action.error
+            userDto: action.errorDto
         };
     }),
     on(UserPageActions.clearCurrentUser, (state): UserState => {
         return {
             ...state,
-            currentUser: null
+            userDto: {
+                user : null,
+                error: null
+            }
         };
     }),
     on(UserPageActions.toggleShowMenu, (state): UserState => {
@@ -64,38 +67,40 @@ export const userReducer = createReducer<UserState>(
     on(UserPageActions.setCurrentUser, (state, action): UserState => {
         return {
             ...state,
-            currentUser: action.currentUser
+            userDto: action.currentUserDto
         };
     }),
     on(UserApiActions.createUserSuccess, (state, action): UserState => {
         return {
             ...state,
-            currentUser: action.user,
-            error: ''
+            userDto: action.userDto
         };
     }),
     on(UserApiActions.createUserFailure, (state, action): UserState => {
         return {
             ...state,
-            currentUser: null,
-            error: action.error
+            userDto: action.errorDto
         };
     }),
     on(UserApiActions.loginUserSuccess, (state, action): UserState => {
+        console.log("in reducer login: ");
+        console.log(typeof(action.userDto.error));
+        console.log(action.userDto?.user?.isAdmin);
         return {
             ...state,
-            currentUser: action.user,
-            error: ''
+            userDto: action.userDto,
+            userLoggedIn: true
         };
     }),
     on(UserApiActions.loginUserFailure, (state, action): UserState => {
+        console.log("in reducer error: ");
+        console.log(typeof(action.errorDto));
+        console.log("error " + action.errorDto);
         return {
             ...state,
-            currentUser: null,
-            userLoggedIn: false,
-            error: action.error
+            userDto: action.errorDto,
+            userLoggedIn: false
         };
-    
     })
 );
     

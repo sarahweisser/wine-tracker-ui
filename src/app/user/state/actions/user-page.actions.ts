@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { User } from "../../user";
+import { UserDto } from "../../user";
 
 export const toggleUserLoggedIn = createAction(
     '[User Page] Toggle User Logged In'
@@ -15,7 +15,7 @@ export const toggleShowMenu = createAction(
 
 export const setCurrentUser = createAction(
     '[User Page] Set Current User',
-    props<{ currentUser: User }>()
+    props<{ currentUserDto: UserDto }>()
 );
 
 export const getCurrentUser = createAction(
@@ -28,15 +28,15 @@ export const clearCurrentUser = createAction(
 
 export const getUserById = createAction(
     '[User Page] Get User By Id',
-    props<{ user: User }>()
+    props<{ userDto: UserDto }>()
 );
 
 export const createUser = createAction(
     '[User Page] Create User',
-    props<{ newUser: User }>()
+    props<{ newUserDto: UserDto }>()
 );
 
 export const loginUser = createAction(
     '[User Page] Login User',
-    props<{ user: User }>()
+    props<{ userDto: UserDto }>()
 );

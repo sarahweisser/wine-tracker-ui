@@ -13,10 +13,10 @@ export class UserEffects {
     return this.actions$
       .pipe(
         ofType(UserPageActions.getUserById),
-        mergeMap((action) => this.userService.getUserById(action.user)
+        mergeMap((action) => this.userService.getUserById(action.userDto)
           .pipe(
-            map(user => UserApiActions.getUserByIdSuccess({ user })),
-            catchError(error => of(UserApiActions.getUserByIdFailure({ error })))
+            map(userDto => UserApiActions.getUserByIdSuccess({ userDto: userDto })),
+            catchError(error => of(UserApiActions.getUserByIdFailure({ errorDto: error })))
           )
         )
       );
@@ -26,11 +26,11 @@ export class UserEffects {
     return this.actions$
       .pipe(
         ofType(UserPageActions.createUser),
-        concatMap((action) => this.userService.createUser(action.newUser)
+        concatMap((action) => this.userService.createUser(action.newUserDto)
           .pipe(
-            tap(data => console.log(JSON.stringify(data))),
-            map(user => UserApiActions.createUserSuccess({ user })),
-            catchError(error => of(UserApiActions.createUserFailure({ error })))
+            tap(data => console.log("HEY: " + JSON.stringify(data))),
+            map(userDto => UserApiActions.createUserSuccess({ userDto })),
+            catchError(errorDto => of(UserApiActions.createUserFailure({ errorDto })))
           )
         )
       );
@@ -40,11 +40,11 @@ export class UserEffects {
     return this.actions$
       .pipe(
         ofType(UserPageActions.loginUser),
-        concatMap((action) => this.userService.loginUser(action.user)
+        concatMap((action) => this.userService.loginUser(action.userDto)
           .pipe(
             tap(data => console.log(JSON.stringify(data))),
-            map(user => UserApiActions.loginUserSuccess({ user })),
-            catchError(error => of(UserApiActions.loginUserFailure({ error })))
+            map(userDto => UserApiActions.loginUserSuccess({ userDto })),
+            catchError(errorDto => of(UserApiActions.loginUserFailure({ errorDto })))
           )
         )
       );

@@ -4,7 +4,7 @@ import { State } from "./state/user.reducer";
 import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
 import { UserPageActions } from "./state/actions";
-import { User } from "./user";
+import { User, UserDto } from "./user";
 import { Observable } from "rxjs";
 import { getCurrentUser } from "./state";
 
@@ -13,8 +13,8 @@ import { getCurrentUser } from "./state";
 })
 export class AddUserComponent implements OnInit {
     pageTitle = "Create New Account";
-    currentUser$!: Observable<User | null>;
-    newUser!: User;
+    currentUser$!: Observable<User | null | undefined>;
+    newUserDto!: UserDto;
 
     constructor(
         private store: Store<State>,
@@ -36,14 +36,17 @@ export class AddUserComponent implements OnInit {
             const userPassword = addUserForm.form.value.userPassword;
             const isAdmin = addUserForm.form.value.isAdmin;
             // TODO validate data for security
-            this.newUser = {
-                userName: userName,
-                userPassword: userPassword,
-                isAdmin: isAdmin
+            this.newUserDto = {
+                user: {
+                    userName: userName,
+                    userPassword: userPassword,
+                    isAdmin: isAdmin
+                },
+                error: null
             }
-            console.log("add user 3 " + JSON.stringify(this.newUser));
-            this.store.dispatch(UserPageActions.createUser({ newUser: this.newUser }));
-            this.store.dispatch(UserPageActions.setCurrentUser({ currentUser: this.newUser }));
+            console.log("add user 3 " + JSON.stringify(this.newUserDto));
+            this.store.dispatch(UserPageActions.createUser({ newUserDto: this.newUserDto }));
+            this.store.dispatch(UserPageActions.setCurrentUser({ currentUserDto: this.newUserDto }));
 
         }
         this.store.dispatch(UserPageActions.toggleNewUserLogIn());

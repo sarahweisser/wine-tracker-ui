@@ -20,7 +20,12 @@ export const getNewUserLogin = createSelector(
 
 export const getCurrentUser = createSelector(
     getUserFeatureState,
-    state => state.currentUser
+    state => state.userDto?.user
+);
+
+export const getCurrentUserIsAdmin = createSelector(
+    getUserFeatureState,
+    state => state.userDto?.user?.isAdmin
 );
 
 export const getShowMenu = createSelector(
@@ -30,5 +35,5 @@ export const getShowMenu = createSelector(
 
 export const getError = createSelector(
     getUserFeatureState,
-    state => state.error
+    state => state.userDto?.error
 );

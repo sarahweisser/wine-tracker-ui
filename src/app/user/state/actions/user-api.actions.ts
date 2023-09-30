@@ -1,32 +1,32 @@
 import { createAction, props } from "@ngrx/store";
-import { User } from "../../user";
+import { UserDto } from "../../user";
 
 export const getUserByIdSuccess = createAction(
     '[User API] Get User by ID Success',
-    props<{user: User}>()
+    props<{userDto: UserDto}>()
 );
 
 export const getUserByIdFailure = createAction(
     '[User API] Get User by ID Failure',
-    props<{error: string}>()
+    props<{errorDto: UserDto}>()
 );
 
 export const createUserSuccess = createAction(
     '[User API] Create User Success',
-    props<{user: User}>()
+    props<{userDto: UserDto}>()
 );
 
 export const createUserFailure = createAction(
     '[User API] Create User Failure',
-    props<{error: string}>()
+    props<{errorDto: UserDto}>()
 );
 
 export const loginUserSuccess = createAction(
     '[User API] Login User Success',
-    props<{user: User}>()
+    props<{userDto: UserDto}>()
 );
 
 export const loginUserFailure = createAction(
     '[User API] Login User Failure',
-    props<{error: string}>()
+    props<{errorDto: UserDto}>()
 );
